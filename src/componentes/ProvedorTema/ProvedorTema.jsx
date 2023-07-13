@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 
 const tema = {
   cores: {
-    branco: "",
+    branco: "#FFFFFF",
     atencao: "",
     focus: "",
     primarias: {
@@ -16,7 +16,7 @@ const tema = {
       c: "",
     },
     neutras: {
-      a: "",
+      a: "#373737",
       b: "",
       c: "",
     },
@@ -28,6 +28,8 @@ const tema = {
   espacamentos: {
     l: "32px",
     s: "16px",
+    m: "24px",
+    xs: "8px"
   },
   fontFamily: " 'Montserrat', sans-serif "
 };
