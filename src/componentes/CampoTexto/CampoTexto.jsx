@@ -1,9 +1,13 @@
 import styled from "@emotion/styled";
 
-const LabelEstilizada = styled.label`
+export const LabelEstilizada = styled.label`
   display: block;
   width: 100%;
   box-sizing: border-box;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  position: relative
 `;
 const InputEstilziado = styled.input`
   display: block;

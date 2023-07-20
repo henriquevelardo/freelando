@@ -11,7 +11,7 @@ const BotaoPrimarioEstilizado = styled.button`
     line-height: 20px;
     text-align: center;
     cursor: pointer;
-    border: none;
+    border: none;                   
     &:hover {
         background: ${props => props.theme.cores.dark.b};
     }
