@@ -22,6 +22,12 @@ const estilos = {
         font-size: 32px;
         line-height: 39px;
     `,
+    h2Centralizado: `
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 39px;
+        text-align:center
+    `,
     h3: `
         font-weight: 500;
         font-size: 24px;
@@ -31,6 +37,12 @@ const estilos = {
         font-weight: 400;
         font-size: 20px;
         line-height: 24px;
+    `,
+    bodyCentralizado: `
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        text-align:center;
     `,
     bodyBold: `
         font-weight: 700;
