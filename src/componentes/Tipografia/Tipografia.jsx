@@ -8,7 +8,7 @@ const componentes = {
     bodyBold: 'strong',
     body2: 'p',
     body2Bold: 'strong',
-    legenda: 'p'
+    legenda: 'p',
 }
 
 const estilos = {
@@ -63,7 +63,8 @@ const estilos = {
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
-    `
+    `,
+  
 }
 
 
