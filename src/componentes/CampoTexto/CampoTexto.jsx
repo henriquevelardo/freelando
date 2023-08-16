@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
+import { useEffect, useState } from "react";
 
 export const LabelEstilizada = styled.label`
   display: block;
@@ -7,7 +9,7 @@ export const LabelEstilizada = styled.label`
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  position: relative
+  position: relative;
 `;
 const InputEstilziado = styled.input`
   display: block;
@@ -25,11 +27,39 @@ const InputEstilziado = styled.input`
   line-height: 17px;
 `;
 
-export const CampoTexto = ({ titulo }) => {
+export const CampoTexto = ({
+  titulo,
+  valor,
+  tipo = "text",
+  onChange,
+  tamanhoMinimo,
+  chave
+}) => {
+  const { usuario, erroCadastro } = useCadastroUsuarioContext();
+  const [estaPreenchido, setEstaPreenchido] = useState()
+  
+
+  const validaCadastro = (chave) => {
+     if(usuario[`${chave}`] === "") {
+       setEstaPreenchido(false)
+     }else {
+      setEstaPreenchido(true)
+   }
+  }
+   
   return (
     <LabelEstilizada>
       {titulo}
-      <InputEstilziado />
+      <InputEstilziado
+        value={valor}
+        type={tipo}
+        onChange={(evento) => onChange(evento.target.value)}
+        minLength={tamanhoMinimo}
+        chave={chave}
+        onBlur={() => validaCadastro(chave)}
+        required 
+      />
+      {estaPreenchido === false ? <p>Não preencheu</p> : ""}
     </LabelEstilizada>
   );
 };

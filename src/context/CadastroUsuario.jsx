@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const usuarioInicial = {
   perfil: "",  
@@ -12,6 +13,11 @@ const usuarioInicial = {
   senhaConfirmada: "",
 };
 
+const possiveisErros = {
+    campoObrigatorio: "Por gentileza, esse campo não pode estar vazio"
+}
+
+
 export const CadastroUsuarioContext = createContext({
     usuario: usuarioInicial,
     setPerfil: () => null,
@@ -22,15 +28,21 @@ export const CadastroUsuarioContext = createContext({
     setEmail: () => null,
     setSenha: () => null,
     setSenhaConfirmada: () => null,
+    submeterUsuario: () => null,
+    podeSelecionarInteresse: () => null, 
+    podeIncluirDados: () => null,
+    imprimiErro: () => null,
 })
 
 export const useCadastroUsuarioContext = () => {
-    return useState(CadastroUsuarioContext)
+    return useContext(CadastroUsuarioContext)
 }
 
 export const CadastroUsuarioProvider = ({ children }) => {
-
+    const navegar = useNavigate()
     const [usuario, setUsuario] = useState(usuarioInicial)
+    const [erros, setErros] = useState(null) 
+
 
     const setPerfil = (perfil) => {
         setUsuario(estadoAnterior => {
@@ -40,11 +52,11 @@ export const CadastroUsuarioProvider = ({ children }) => {
             }
         })
     }
-    const setInteresse = (interese) => {
+    const setInteresse = (interesse) => {
         setUsuario(estadoAnterior => {
             return {
                 ...estadoAnterior,
-                interese
+                interesse
             }
         })
     }
@@ -96,10 +108,26 @@ export const CadastroUsuarioProvider = ({ children }) => {
             }
         })
     }
+    const submeterUsuario = () => {
+        console.log(usuario)
+        navegar("/cadastro/concluido")
+    }
 
+    const podeSelecionarInteresse = () => {
+        return !!usuario.perfil
+    }
+
+    const podeIncluirDados = () => {
+        return !!usuario.interesse
+    }   
+
+    const imprimiErro = () => {
+        return erros
+    }
 
     const contexto = {
         usuario,
+        erros,
         setPerfil, 
         setInteresse,
         setNomeCompleto,
@@ -107,7 +135,11 @@ export const CadastroUsuarioProvider = ({ children }) => {
         setCidade,
         setEmail,
         setSenha,
-        setSenhaConfirmada
+        setSenhaConfirmada,
+        submeterUsuario,
+        podeSelecionarInteresse,
+        podeIncluirDados,
+        imprimiErro
     }
 
     return (

@@ -2,8 +2,10 @@ import { Tipografia } from "../../componentes/Tipografia/Tipografia";
 import GrupoRadio from "../../componentes/GrupoRadio/GrupoRadio";
 import { Botao } from "../../componentes/Botao/Botao";
 import { Col, Row } from "react-grid-system";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CabecalhoCadastro from "./CabecalhoCadastro";
+import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
+import { useEffect } from "react";
 
 const opcoes = [
   {
@@ -33,6 +35,16 @@ const opcoes = [
 ];
 
 const Interesses = () => {
+
+  const { usuario, setInteresse, podeSelecionarInteresse} = useCadastroUsuarioContext()
+  const navegar = useNavigate()
+  
+  useEffect(() => {
+    if(!podeSelecionarInteresse()){
+      navegar('/cadastro')
+    }
+  },[navegar, podeSelecionarInteresse])
+
   return (
     <>
       <div style={{ textAlign: "center" }}>
@@ -41,7 +53,11 @@ const Interesses = () => {
         subtitulo="Qual a área de interesse?"
       />
       </div>
-      <GrupoRadio opcoes={opcoes} />
+      <GrupoRadio 
+        opcoes={opcoes} 
+        onChange = {setInteresse}
+        valorInteresse={usuario.interesse}
+      />
       <Row style={{ marginTop: "32px" }}>
         <Col lg={6} md={6} sm={6}>
           <Link to="/cadastro">

@@ -12,7 +12,6 @@ const ImagemEstilizada = styled.img`
 
 `;
 
-
 const Concluido = () => {
   return (
     <>
