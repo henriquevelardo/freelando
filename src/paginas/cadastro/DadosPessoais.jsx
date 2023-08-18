@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CabecalhoCadastro from "./CabecalhoCadastro";
 import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
 import { useEffect, useState } from "react";
+import ErroFormulario from "../../componentes/ErroFormulario/ErroFormulario";
 
 const estadosBrasileiros = [
   { text: "Acre", value: "AC" },
@@ -38,7 +39,6 @@ const estadosBrasileiros = [
 ];
 
 const DadosPessoais = () => {
-
   const {
     usuario,
     setNomeCompleto,
@@ -48,23 +48,28 @@ const DadosPessoais = () => {
     setSenha,
     setSenhaConfirmada,
     submeterUsuario,
-    podeIncluirDados, 
-    erroCadastro
+    podeIncluirDados,
+    validaCadastro,
+    estaPreenchido,
+    erro,
   } = useCadastroUsuarioContext();
 
-  const navegar = useNavigate()
+  const navegar = useNavigate();
 
   useEffect(() => {
-    if(!podeIncluirDados()){
-      navegar('/cadastro/interesses')
+    if (!podeIncluirDados()) {
+      navegar("/cadastro/interesses");
     }
-  },[navegar, podeIncluirDados])
+  }, [navegar, podeIncluirDados]);
 
   const finalizaCadastro = (evento) => {
     evento.preventDefault();
     submeterUsuario();
   };
 
+  const validacao = (chave, tamanhoMinimo) => {
+    validaCadastro(chave, tamanhoMinimo);
+  };
 
   return (
     <form onSubmit={finalizaCadastro}>
@@ -78,9 +83,11 @@ const DadosPessoais = () => {
             titulo="Nome Completo"
             valor={usuario.nomeCompleto}
             onChange={setNomeCompleto}
-            tamanhoMinimo = "8"
+            tamanhoMinimo="8"
             chave="nomeCompleto"
+            valida={() => validacao("nomeCompleto", "8")}
           />
+          {estaPreenchido === false ? <ErroFormulario mensagem={erro} /> : ""}
         </Col>
       </Row>
       <Row>
@@ -97,7 +104,10 @@ const DadosPessoais = () => {
             titulo="Cidade"
             valor={usuario.cidade}
             onChange={setCidade}
+            chave="cidade"
+            valida={() => validacao("cidade", "8")}
           />
+          {estaPreenchido === false ? <ErroFormulario mensagem={erro} /> : ""}
         </Col>
       </Row>
       <Row>
@@ -107,6 +117,8 @@ const DadosPessoais = () => {
             valor={usuario.email}
             tipo="email"
             onChange={setEmail}
+            tamanhoMinimo="10"
+            chave="email"
           />
         </Col>
       </Row>
@@ -136,7 +148,9 @@ const DadosPessoais = () => {
         </Col>
         <Col lg={6} md={6} sm={6}>
           <div style={{ textAlign: "right" }}>
-            <Botao variante="primaria">Proximo</Botao>
+            <Link to="/cadastro/concluido">
+              <Botao variante="primaria">Proximo</Botao>
+            </Link>
           </div>
         </Col>
       </Row>

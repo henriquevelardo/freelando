@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import { Tipografia } from "../../componentes/Tipografia/Tipografia";
 import concluidoCliente from "./assets/cliente-concluido.png";
 import { Col, Row } from "react-grid-system";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Botao } from "../../componentes/Botao/Botao";
+import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
+import { useEffect } from "react";
 
 
 const ImagemEstilizada = styled.img`
@@ -13,6 +15,29 @@ const ImagemEstilizada = styled.img`
 `;
 
 const Concluido = () => {
+
+  const {
+    usuario,
+    setNomeCompleto,
+    setUf,
+    setCidade,
+    setEmail,
+    setSenha,
+    setSenhaConfirmada,
+    submeterUsuario,
+    podeIncluirDados,
+    podeConcluir,
+    erroCadastro,
+  } = useCadastroUsuarioContext();
+
+  const navegar = useNavigate();
+
+  useEffect(() => {
+    if (!podeConcluir()) {
+      navegar("/cadastro/dados-pessoais");
+    }
+  }, [navegar, podeIncluirDados]);
+
   return (
     <>
       <Tipografia variante="h2Centralizado" componente="h2">

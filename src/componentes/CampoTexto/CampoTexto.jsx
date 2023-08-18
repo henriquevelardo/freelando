@@ -11,7 +11,7 @@ export const LabelEstilizada = styled.label`
   line-height: 24px;
   position: relative;
 `;
-const InputEstilziado = styled.input`
+const InputEstiliziado = styled.input`
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -33,33 +33,21 @@ export const CampoTexto = ({
   tipo = "text",
   onChange,
   tamanhoMinimo,
-  chave
+  chave,
+  valida,
 }) => {
-  const { usuario, erroCadastro } = useCadastroUsuarioContext();
-  const [estaPreenchido, setEstaPreenchido] = useState()
   
-
-  const validaCadastro = (chave) => {
-     if(usuario[`${chave}`] === "") {
-       setEstaPreenchido(false)
-     }else {
-      setEstaPreenchido(true)
-   }
-  }
-   
   return (
     <LabelEstilizada>
       {titulo}
-      <InputEstilziado
+      <InputEstiliziado
         value={valor}
         type={tipo}
         onChange={(evento) => onChange(evento.target.value)}
         minLength={tamanhoMinimo}
         chave={chave}
-        onBlur={() => validaCadastro(chave)}
-        required 
+        onBlur={valida}
       />
-      {estaPreenchido === false ? <p>Não preencheu</p> : ""}
     </LabelEstilizada>
   );
 };
