@@ -47,6 +47,7 @@ export const CampoTexto = ({
         minLength={tamanhoMinimo}
         chave={chave}
         onBlur={valida}
+        name={chave}
       />
     </LabelEstilizada>
   );

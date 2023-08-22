@@ -54,6 +54,8 @@ const DadosPessoais = () => {
     erro,
   } = useCadastroUsuarioContext();
 
+  const [alvo, setAlvo] = useState([])
+
   const navegar = useNavigate();
 
   useEffect(() => {
@@ -67,8 +69,9 @@ const DadosPessoais = () => {
     submeterUsuario();
   };
 
-  const validacao = (chave, tamanhoMinimo) => {
+  const validacao = (chave, tamanhoMinimo, novoAlvo) => {
     validaCadastro(chave, tamanhoMinimo);
+    setAlvo([...alvo, novoAlvo])
   };
 
   return (
@@ -85,9 +88,9 @@ const DadosPessoais = () => {
             onChange={setNomeCompleto}
             tamanhoMinimo="8"
             chave="nomeCompleto"
-            valida={() => validacao("nomeCompleto", "8")}
+            valida={(evento) => validacao("nomeCompleto", "8", evento.target.name)}
           />
-          {estaPreenchido === false ? <ErroFormulario mensagem={erro} /> : ""}
+          {estaPreenchido === false && alvo.includes("nomeCompleto")  ? <ErroFormulario mensagem={erro} /> : ""}
         </Col>
       </Row>
       <Row>
@@ -105,9 +108,9 @@ const DadosPessoais = () => {
             valor={usuario.cidade}
             onChange={setCidade}
             chave="cidade"
-            valida={() => validacao("cidade", "8")}
+            valida={(evento) => validacao("cidade", "8", evento.target.name)}
           />
-          {estaPreenchido === false ? <ErroFormulario mensagem={erro} /> : ""}
+          {estaPreenchido === false && alvo.includes("cidade")  ? <ErroFormulario mensagem={erro} /> : ""}
         </Col>
       </Row>
       <Row>
