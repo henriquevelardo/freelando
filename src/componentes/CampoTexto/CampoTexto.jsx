@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
 import { useEffect, useState } from "react";
+import { NaoPreenchido, NomeIncompleto } from "../ErroFormulario/ErroFormulario";
 
 export const LabelEstilizada = styled.label`
   display: block;
@@ -34,9 +35,27 @@ export const CampoTexto = ({
   onChange,
   tamanhoMinimo,
   chave,
-  valida,
+  usuario
 }) => {
   
+
+  const [mensagem, setMensagem] = useState(null)
+
+  const valida = (valor, target, tamanhoMinimo) =>{
+    const componenteDeErro = exibeErro(valor, target, tamanhoMinimo)
+    setMensagem(componenteDeErro)
+  }
+
+  const exibeErro = (valor, target, tamanhoMinimo) => {
+    if(valor === ""){
+      return <NaoPreenchido />
+    }
+    if( target === "nomeCompleto" && valor.length < tamanhoMinimo){
+     return <NomeIncompleto />
+    }
+  }
+
+ 
   return (
     <LabelEstilizada>
       {titulo}
@@ -46,9 +65,10 @@ export const CampoTexto = ({
         onChange={(evento) => onChange(evento.target.value)}
         minLength={tamanhoMinimo}
         chave={chave}
-        onBlur={valida}
+        onBlur={(evento) => valida(valor, evento.target.name, "8")}
         name={chave}
       />
+      {mensagem}
     </LabelEstilizada>
   );
 };

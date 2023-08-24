@@ -49,12 +49,7 @@ const DadosPessoais = () => {
     setSenhaConfirmada,
     submeterUsuario,
     podeIncluirDados,
-    validaCadastro,
-    estaPreenchido,
-    erro,
   } = useCadastroUsuarioContext();
-
-  const [alvo, setAlvo] = useState([])
 
   const navegar = useNavigate();
 
@@ -69,10 +64,7 @@ const DadosPessoais = () => {
     submeterUsuario();
   };
 
-  const validacao = (chave, tamanhoMinimo, novoAlvo) => {
-    validaCadastro(chave, tamanhoMinimo);
-    setAlvo([...alvo, novoAlvo])
-  };
+  
 
   return (
     <form onSubmit={finalizaCadastro}>
@@ -88,9 +80,8 @@ const DadosPessoais = () => {
             onChange={setNomeCompleto}
             tamanhoMinimo="8"
             chave="nomeCompleto"
-            valida={(evento) => validacao("nomeCompleto", "8", evento.target.name)}
+            
           />
-          {estaPreenchido === false && alvo.includes("nomeCompleto")  ? <ErroFormulario mensagem={erro} /> : ""}
         </Col>
       </Row>
       <Row>
@@ -108,9 +99,8 @@ const DadosPessoais = () => {
             valor={usuario.cidade}
             onChange={setCidade}
             chave="cidade"
-            valida={(evento) => validacao("cidade", "8", evento.target.name)}
+            
           />
-          {estaPreenchido === false && alvo.includes("cidade")  ? <ErroFormulario mensagem={erro} /> : ""}
         </Col>
       </Row>
       <Row>
@@ -122,6 +112,7 @@ const DadosPessoais = () => {
             onChange={setEmail}
             tamanhoMinimo="10"
             chave="email"
+            
           />
         </Col>
       </Row>
@@ -132,6 +123,7 @@ const DadosPessoais = () => {
             valor={usuario.senha}
             tipo="password"
             onChange={setSenha}
+            
           />
         </Col>
         <Col lg={6} md={6} sm={6}>
@@ -140,6 +132,7 @@ const DadosPessoais = () => {
             valor={usuario.senhaConfirmada}
             tipo="password"
             onChange={setSenhaConfirmada}
+            
           />
         </Col>
       </Row>

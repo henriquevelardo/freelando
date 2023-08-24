@@ -13,10 +13,7 @@ const usuarioInicial = {
   senhaConfirmada: "",
 };
 
-const possiveisErros = {
-  campoObrigatorio: "Por gentileza, esse campo não pode estar vazio",
-  nomeCompleto: "Por gentileza, preencha com nome completo",
-};
+
 
 export const CadastroUsuarioContext = createContext({
   usuario: usuarioInicial,
@@ -43,9 +40,7 @@ export const useCadastroUsuarioContext = () => {
 export const CadastroUsuarioProvider = ({ children }) => {
   const navegar = useNavigate();
   const [usuario, setUsuario] = useState(usuarioInicial);
-  const [estaPreenchido, setEstaPreenchido] = useState();
   
-  const [erro, setErro] = useState();
 
   const setPerfil = (perfil) => {
     setUsuario((estadoAnterior) => {
@@ -126,29 +121,11 @@ export const CadastroUsuarioProvider = ({ children }) => {
     return usuario.nomeCompleto, usuario.cidade;
   };
 
-  const validaCadastro = (chave, tamanhoMinimo) => {
-    const dadoInformado = usuario[`${chave}`];
-    if (dadoInformado === "") {
-      const obrigatorio = "campoObrigatorio";
-      setEstaPreenchido(false);
-      setErro(imprimiErro(obrigatorio));
-    } else if (dadoInformado !== "" && dadoInformado.length < tamanhoMinimo) {
-      setErro(imprimiErro(chave));
-    } else {
-      setEstaPreenchido(true);
-    }
-    return estaPreenchido
-  };
 
-  const imprimiErro = (chave) => {
-    const erros = possiveisErros[`${chave}`];
-    return erros;
-  };
+
 
   const contexto = {
     usuario,
-    erro,
-    estaPreenchido,
     setPerfil,
     setInteresse,
     setNomeCompleto,
@@ -161,8 +138,6 @@ export const CadastroUsuarioProvider = ({ children }) => {
     podeSelecionarInteresse,
     podeIncluirDados,
     podeConcluir,
-    validaCadastro,
-    imprimiErro,
   };
 
   return (
