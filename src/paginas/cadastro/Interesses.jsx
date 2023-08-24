@@ -60,13 +60,13 @@ const Interesses = () => {
       />
       <Row style={{ marginTop: "32px" }}>
         <Col lg={6} md={6} sm={6}>
-          <Link to="/cadastro">
+          <Link to="/">
             <Botao variante="secundaria">Anterior</Botao>
           </Link>
         </Col>
         <Col lg={6} md={6} sm={6}>
           <div style={{ textAlign: "right" }}>
-            <Link to="/cadastro/dados-pessoais">
+            <Link to="/dados-pessoais">
               <Botao variante="primaria">Proximo</Botao>
             </Link>
           </div>

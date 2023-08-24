@@ -8,15 +8,15 @@ import Concluido from "../paginas/cadastro/Concluido";
 
 export const router = createBrowserRouter([
     {
-      path: "/",
+      path: '',
       element: <PaginaBase />,
       children: [
         {
-          path: 'cadastro',
+          path: '',
           element: <LayoutBaseCadastro />,
           children: [
             {
-              path: '',
+              path: '/',
               element: <SelecaoCliente />
             },
             {
@@ -31,7 +31,8 @@ export const router = createBrowserRouter([
             },
             {
               path: 'concluido',
-              element: <Concluido />
+              element: <Concluido />,
+              children: []
             }
           ]
         }

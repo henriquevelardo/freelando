@@ -34,7 +34,7 @@ const Concluido = () => {
 
   useEffect(() => {
     if (!podeConcluir()) {
-      navegar("/cadastro/dados-pessoais");
+      navegar("/dados-pessoais");
     }
   }, [navegar, podeIncluirDados]);
 
@@ -49,7 +49,7 @@ const Concluido = () => {
       <ImagemEstilizada src={concluidoCliente} />
       <Row justify="center" style={{ marginTop: "32px" }}> 
         <Col lg={6} md={6} sm={6} style={{ textAlign: 'center' }}>
-          <Link to="/cadastro/interesses">
+          <Link to="/">
             <Botao variante="secundaria">Voltar para home</Botao>
           </Link>
         </Col>
