@@ -16,7 +16,7 @@ const LayoutBaseCadastro = () => {
           sm={12}
           style={{ margin: "80px 0" }}
         >
-          <Card>
+          <Card borda="true">
             <Outlet />
           </Card>
         </Col>

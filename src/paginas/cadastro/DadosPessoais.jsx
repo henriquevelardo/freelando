@@ -144,7 +144,7 @@ const DadosPessoais = () => {
         </Col>
         <Col lg={6} md={6} sm={6}>
           <div style={{ textAlign: "right" }}>
-            <Link to="/concluido">
+            <Link to="/cadastro/concluido">
               <Botao variante="primaria">Proximo</Botao>
             </Link>
           </div>
