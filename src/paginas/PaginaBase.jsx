@@ -13,7 +13,7 @@ const PaginaBase = ({ banner }) => {
       <Container>
         <Outlet />
       </Container>
-      <Rodape>Todos os direitos reservados 2023 @freelando</Rodape>
+      <Rodape>Desenvolvido por Henrique Velardo @freelando</Rodape>
     </>
   );
 };

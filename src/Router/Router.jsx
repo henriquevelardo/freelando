@@ -6,6 +6,7 @@ import Interesses from "../paginas/cadastro/Interesses";
 import DadosPessoais from "../paginas/cadastro/DadosPessoais";
 import Concluido from "../paginas/cadastro/Concluido";
 import Home from "../paginas/Home/Home";
+import Login from "../paginas/Login/Login";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,22 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />
+      }
+    ],
+  },
+  {
+    path: '',
+    element: <PaginaBase banner={false} />,
+    children: [
+      {
+        path: '/login',
+        element: <LayoutBaseCadastro />,
+        children: [ 
+          {
+            path: "",
+            element: <Login />
+          }
+        ]
       }
     ],
   },
