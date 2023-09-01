@@ -34,7 +34,7 @@ const Concluido = () => {
 
   useEffect(() => {
     if (!podeConcluir()) {
-      navegar("/dados-pessoais");
+      navegar("/cadastro/dados-pessoais");
     }
   }, [navegar, podeIncluirDados]);
 

@@ -19,7 +19,7 @@ const SelecaoCliente = () => {
       />
       <Row>
         <Col md={6} sm={12}>
-          <RouterLink to="interesses" onClick={() => setPerfil('cliente')}>
+          <RouterLink to="interesses" onClick={() => setPerfil('cliente')} style={{textDecoration: "none", color: "#373737"}}>
             <img src={cliente} alt="" />
             <Tipografia variante="body" componente="body">
               Sou cliente e preciso de um freela!
@@ -37,9 +37,9 @@ const SelecaoCliente = () => {
         <Tipografia variante="body2" componente="body2">
           Já tem conta?
         </Tipografia>
-        <p>
+        <RouterLink to="/login">
           <Link>Faça login!</Link>
-        </p>
+        </RouterLink>
       </div>
     </div>
   );

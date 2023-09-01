@@ -8,6 +8,7 @@ const LinkEstilizado = styled.a`
 
     &:hover {
         font-size: 20px;
+        
       }
 
 `

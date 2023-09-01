@@ -7,6 +7,7 @@ import DadosPessoais from "../paginas/cadastro/DadosPessoais";
 import Concluido from "../paginas/cadastro/Concluido";
 import Home from "../paginas/Home/Home";
 import Login from "../paginas/Login/Login";
+import PaginaNaoEncontrada from "../paginas/404/PaginaNaoEncontrada";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,16 @@ export const router = createBrowserRouter([
     path: '',
     element: <PaginaBase banner={false} />,
     children: [
+      {
+        path: '',
+        element: <LayoutBaseCadastro />,
+        children: [
+          {
+            path: '*',
+            element: <PaginaNaoEncontrada />
+          }
+        ]
+      },
       {
         path: '/login',
         element: <LayoutBaseCadastro />,
@@ -63,4 +74,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  
 ]);

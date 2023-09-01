@@ -55,7 +55,7 @@ const DadosPessoais = () => {
 
   useEffect(() => {
     if (!podeIncluirDados()) {
-      navegar("/interesses");
+      navegar("/cadastro/interesses");
     }
   }, [navegar, podeIncluirDados]);
 
@@ -138,7 +138,7 @@ const DadosPessoais = () => {
       </Row>
       <Row>
         <Col lg={6} md={6} sm={6}>
-          <Link to="/interesses">
+          <Link to="/cadastro/interesses">
             <Botao variante="secundaria">Anterior</Botao>
           </Link>
         </Col>
