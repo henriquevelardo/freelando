@@ -8,6 +8,8 @@ import Concluido from "../paginas/cadastro/Concluido";
 import Home from "../paginas/Home/Home";
 import Login from "../paginas/Login/Login";
 import PaginaNaoEncontrada from "../paginas/404/PaginaNaoEncontrada";
+import AreaAtuacao from "../paginas/cadastro/AreaAtuacao";
+import InformacoesProfissionais from "../paginas/cadastro/InformacoesProfissionais";
 
 export const router = createBrowserRouter([
   {
@@ -59,12 +61,20 @@ export const router = createBrowserRouter([
             element: <SelecaoCliente />,
           },
           {
+            path: "area-atuacao",
+            element: <AreaAtuacao />,
+          },
+          {
             path: "interesses",
             element: <Interesses />,
           },
           {
             path: "dados-pessoais",
             element: <DadosPessoais />,
+          },
+          {
+            path: "informacoes-profissionais",
+            element: <InformacoesProfissionais />,
           },
           {
             path: "concluido",

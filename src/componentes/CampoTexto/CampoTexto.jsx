@@ -22,7 +22,7 @@ const InputEstiliziado = styled.input`
   border: 1px solid;
   border-color: ${(props) => props.theme.cores.neutras.a};
   border-radius: ${(props) => props.theme.espacamentos.s};
-  height: 40px;
+  height: ${(props) => props.variante === "grande" ? "120px" : "40px"};
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -35,7 +35,8 @@ export const CampoTexto = ({
   onChange,
   tamanhoMinimo,
   chave,
-  usuario
+  usuario,
+  variante = "", 
 }) => {
   
 
@@ -67,6 +68,7 @@ export const CampoTexto = ({
         chave={chave}
         onBlur={(evento) => valida(valor, evento.target.name, "8")}
         name={chave}
+        variante={variante}
       />
       {mensagem}
     </LabelEstilizada>

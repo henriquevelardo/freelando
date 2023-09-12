@@ -44,7 +44,9 @@ const Concluido = () => {
         Seu perfil está completo!
       </Tipografia>
       <Tipografia variante="bodyCentralizado" componente="body">
-        Agora é só começar a se conectar com os melhores freelancers do mercado!
+        {usuario.perfil === "cliente" ? 
+        "Agora é só começar a se conectar com os melhores freelancers do mercado!" : 
+        "Parabéns!, agora é só comecar a trabalhar" }
       </Tipografia>
       <ImagemEstilizada src={concluidoCliente} />
       <Row justify="center" style={{ marginTop: "32px" }}> 

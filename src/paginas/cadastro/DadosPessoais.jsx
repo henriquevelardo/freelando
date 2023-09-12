@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CabecalhoCadastro from "./CabecalhoCadastro";
 import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
 import { useEffect, useState } from "react";
-import ErroFormulario from "../../componentes/ErroFormulario/ErroFormulario";
+
 
 const estadosBrasileiros = [
   { text: "Acre", value: "AC" },
@@ -88,6 +88,7 @@ const DadosPessoais = () => {
         <Col lg={4} md={4} sm={4}>
           <ListaSuspensa
             titulo="Estado"
+            capa="Selecione"
             opcoes={estadosBrasileiros}
             valor={usuario.uf}
             onChange={setUf}
@@ -144,7 +145,9 @@ const DadosPessoais = () => {
         </Col>
         <Col lg={6} md={6} sm={6}>
           <div style={{ textAlign: "right" }}>
-            <Link to="/cadastro/concluido">
+            <Link to={usuario.perfil === "profissional" ? 
+            "/cadastro/informacoes-profissionais" : "/cadastro/concluido"} 
+            >
               <Botao variante="primaria">Proximo</Botao>
             </Link>
           </div>

@@ -123,7 +123,6 @@ export const CadastroUsuarioProvider = ({ children }) => {
 
 
 
-
   const contexto = {
     usuario,
     setPerfil,

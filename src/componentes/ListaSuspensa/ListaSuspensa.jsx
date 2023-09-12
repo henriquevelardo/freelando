@@ -56,7 +56,7 @@ const ItemListaSuspensaEstilizado = styled.li`
   }
 `;
 
-export const ListaSuspensa = ({ titulo, opcoes, onChange, valor }) => {
+export const ListaSuspensa = ({ titulo, opcoes, onChange, valor, capa = "selecione"}) => {
   const [estaAberta, alteraVisibildiade] = useState(false);
   const [opcaoFocada, setOpcaoFocada] = useState(null);
   
@@ -107,7 +107,7 @@ export const ListaSuspensa = ({ titulo, opcoes, onChange, valor }) => {
         onKeyDown={manipulaTecla}
         type="button"
       >
-        <div>{valor ? valor.text : 'Selecione'}</div>
+        <div style={{fontSize: "16px"}}>{valor ? valor.text : `${capa}`}</div>
         <div>
           <span>{estaAberta ? "▲" : "▼"}</span>
         </div>
