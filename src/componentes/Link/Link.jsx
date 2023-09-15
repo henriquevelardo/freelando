@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-const LinkEstilizado = styled.a`
+const LinkEstilizado = styled.p`
     color: ${props => props.theme.cores.primarias.b};
     text-decoration: underline;
     cursor: pointer;

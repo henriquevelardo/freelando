@@ -33,6 +33,8 @@ export const CadastroUsuarioContext = createContext({
   imprimiErro: () => null,
 });
 
+CadastroUsuarioContext.displayName = 'Contexto Usuario' 
+
 export const useCadastroUsuarioContext = () => {
   return useContext(CadastroUsuarioContext);
 };

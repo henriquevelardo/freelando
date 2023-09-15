@@ -7,20 +7,34 @@ import { Botao } from "../../componentes/Botao/Botao";
 import login from "../../assets/login.svg";
 import linha from "../../assets/Line 1.png";
 import { Link as LinkPersonalizado } from "../../componentes/Link/Link";
+import { useLoginUsuarioContext } from "../../context/LoginUsuario";
 
 const Login = () => {
+  const { 
+    dadosInseridos, 
+    setEmailInserido, 
+    setSenhaInserida 
+  } = useLoginUsuarioContext();
+
+
   return (
-    <div style={{ textAlign: "center" }}>
+    <form style={{ textAlign: "center" }}>
       <CabecalhoCadastro titulo="Efetuar Login" />
       <Row style={{ textAlign: "left" }}>
         <Col>
-          <CampoTexto titulo="Email" />
+          <CampoTexto 
+            titulo="Email"
+            onChange={setEmailInserido}
+          />
         </Col>
       </Row>
       <Row style={{ textAlign: "left" }}>
         <Col>
-          <CampoTexto titulo="Senha" />
-
+          <CampoTexto 
+          titulo="Senha" 
+          onChange={setSenhaInserida}
+          />
+          
           <div style={{ textAlign: "right", marginTop: "-8px" }}>
             <Tipografia componente="body" variante="legenda">
               <Link style={{ color: "#373737" }}>Esqueceu a senha?</Link>
@@ -42,12 +56,12 @@ const Login = () => {
           <Tipografia componente="body" variante="body2">
             Ainda não criou sua conta no Freelando?
           </Tipografia>
-          <Link to="/cadastro">
+          <Link  to="/cadastro">
             <LinkPersonalizado>Cadastre-se clicando aqui!</LinkPersonalizado>
           </Link>
         </Col>
       </Row>
-    </div>
+    </form>
   );
 };
 

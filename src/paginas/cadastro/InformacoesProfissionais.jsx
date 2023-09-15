@@ -10,6 +10,10 @@ import linha from "../../assets/Line 1.png";
 import Tag from "../../componentes/Tag/Tag";
 import styled from "@emotion/styled";
 import { ListaSuspensa } from "../../componentes/ListaSuspensa/ListaSuspensa";
+import lixeira from "../../assets/lixeira.png";
+import IconeAdicionar from "../../assets/ícone add.png";
+import { Link } from "react-router-dom";
+import { Botao } from "../../componentes/Botao/Botao";
 
 const Habilidades = styled.div`
   display: flex;
@@ -17,17 +21,16 @@ const Habilidades = styled.div`
 `;
 
 const nivelIdioma = [
-    { text: "Iniciante", value: "1" },
-    { text: "Intermediário", value: "2" },
-    { text: "Avancado", value: "3" },
-  ];
+  { text: "Iniciante", value: "1" },
+  { text: "Intermediário", value: "2" },
+  { text: "Avancado", value: "3" },
+];
 
 const idiomas = [
-    { text: "Português", value: "1" },
-    { text: "Espanhol", value: "2" },
-    { text: "Ingles", value: "3" },
-  ];
-  
+  { text: "Português", value: "1" },
+  { text: "Espanhol", value: "2" },
+  { text: "Ingles", value: "3" },
+];
 
 const InformacoesProfissionais = () => {
   return (
@@ -58,27 +61,96 @@ const InformacoesProfissionais = () => {
         <Col>
           <CampoTexto titulo="Cite 3 habilidades que você considera principais:" />
           <Habilidades>
-            <Tag>FullStack</Tag>
-            <Tag>Front-End</Tag>
-            <Tag>Back-End</Tag>
+            <Tag variante="habilidade">
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                FullStack <img src={lixeira} />
+              </div>
+            </Tag>
+            <Tag variante="habilidade">
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                Front-End <img src={lixeira} />
+              </div>
+            </Tag>
+            <Tag variante="habilidade">
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                Back-End <img src={lixeira} />
+              </div>
+            </Tag>
           </Habilidades>
         </Col>
       </Row>
       <img src={linha} width={"100%"} />
       <Row style={{ marginTop: "32px", marginBottom: "32px" }}>
-        <Col lg={6} >
-        <ListaSuspensa 
+        <Col lg={6}>
+          <ListaSuspensa
             titulo="Idioma"
             capa="Escolha o idioma"
             opcoes={idiomas}
-        />
+          />
         </Col>
-        <Col lg={6} >
-        <ListaSuspensa 
+        <Col lg={6}>
+          <ListaSuspensa
             titulo="Nível"
             capa="Nivel de conhecimento"
             opcoes={nivelIdioma}
-        />
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          lg={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "8px",
+          }}
+        >
+          <img src={IconeAdicionar} style={{ width: "24px", height: "24px" }} />
+          <Tipografia componente="body" variante="body2">
+            Adicionar idiomas
+          </Tipografia>
+        </Col>
+        <Col>
+          <Tipografia componente="body" variante="body2">
+            {" "}
+            Português | Nível Nativo
+          </Tipografia>
+        </Col>
+      </Row>
+      <img src={linha} width={"100%"} />
+      <Row style={{marginTop:"32px" , marginBottom:"32px", gap:"8px"}}>
+        <Col lg={12}>
+          <CampoTexto
+            titulo="Portifólio"
+            valor="Cole o link do seu portifólio"
+          />
+        </Col>
+        <Col>
+          <CampoTexto
+            titulo="Linkedin"
+            valor="Cole o link do seu Linkedin"
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={6} md={6} sm={6}>
+          <Link>
+            <Botao variante="secundaria">Anterior</Botao>
+          </Link>
+        </Col>
+        <Col lg={6} md={6} sm={6}>
+          <div style={{ textAlign: "right" }}>
+            <Link to="/cadastro/concluido">
+              <Botao variante="primaria">Proximo</Botao>
+            </Link>
+          </div>
         </Col>
       </Row>
     </form>
