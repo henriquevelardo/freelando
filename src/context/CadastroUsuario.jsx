@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { DadosUsuario } from "./DadosUsuario";
 
 const usuarioInicial = {
   perfil: "",
@@ -21,7 +22,7 @@ export const CadastroUsuarioContext = createContext({
   setInteresse: () => null,
   setNomeCompleto: () => null,
   setUf: () => null,
-  setCidade: () => null,
+  setCidade: () => null,  
   setEmail: () => null,
   setSenha: () => null,
   setSenhaConfirmada: () => null,
@@ -33,13 +34,18 @@ export const CadastroUsuarioContext = createContext({
   imprimiErro: () => null,
 });
 
-CadastroUsuarioContext.displayName = 'Contexto Usuario' 
+CadastroUsuarioContext.displayName = 'ContextoCadastroUsuario' 
+
+
 
 export const useCadastroUsuarioContext = () => {
   return useContext(CadastroUsuarioContext);
 };
 
+
+
 export const CadastroUsuarioProvider = ({ children }) => {
+  
   const navegar = useNavigate();
   const [usuario, setUsuario] = useState(usuarioInicial);
   
@@ -108,9 +114,12 @@ export const CadastroUsuarioProvider = ({ children }) => {
       };
     });
   };
-  const submeterUsuario = () => {
-    console.log(usuario);
-    navegar("/cadastro/concluido");
+  const submeterUsuario = (usuario) => {
+    console.log(usuario)   
+    
+    navegar(usuario.perfil === "profissional" ? 
+    "/cadastro/informacoes-profissionais" : "/cadastro/concluido")
+
   };
   const podeSelecionarInteresse = () => {
     return !!usuario.perfil;

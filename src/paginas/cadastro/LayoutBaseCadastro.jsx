@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Card } from "../../componentes/Card/Card";
 import { CadastroUsuarioProvider } from "../../context/CadastroUsuario";
 
+
 const LayoutBaseCadastro = () => {
   return (
     <CadastroUsuarioProvider>

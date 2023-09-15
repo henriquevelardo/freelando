@@ -7,7 +7,6 @@ import CabecalhoCadastro from "./CabecalhoCadastro";
 import { useCadastroUsuarioContext } from "../../context/CadastroUsuario";
 import { useEffect, useState } from "react";
 
-
 const estadosBrasileiros = [
   { text: "Acre", value: "AC" },
   { text: "Alagoas", value: "AL" },
@@ -61,10 +60,8 @@ const DadosPessoais = () => {
 
   const finalizaCadastro = (evento) => {
     evento.preventDefault();
-    submeterUsuario();
+    submeterUsuario(usuario)
   };
-
-  
 
   return (
     <form onSubmit={finalizaCadastro}>
@@ -80,7 +77,6 @@ const DadosPessoais = () => {
             onChange={setNomeCompleto}
             tamanhoMinimo="8"
             chave="nomeCompleto"
-            
           />
         </Col>
       </Row>
@@ -100,7 +96,6 @@ const DadosPessoais = () => {
             valor={usuario.cidade}
             onChange={setCidade}
             chave="cidade"
-            
           />
         </Col>
       </Row>
@@ -113,7 +108,6 @@ const DadosPessoais = () => {
             onChange={setEmail}
             tamanhoMinimo="10"
             chave="email"
-            
           />
         </Col>
       </Row>
@@ -124,7 +118,6 @@ const DadosPessoais = () => {
             valor={usuario.senha}
             tipo="password"
             onChange={setSenha}
-            
           />
         </Col>
         <Col lg={6} md={6} sm={6}>
@@ -133,7 +126,6 @@ const DadosPessoais = () => {
             valor={usuario.senhaConfirmada}
             tipo="password"
             onChange={setSenhaConfirmada}
-            
           />
         </Col>
       </Row>
@@ -145,11 +137,9 @@ const DadosPessoais = () => {
         </Col>
         <Col lg={6} md={6} sm={6}>
           <div style={{ textAlign: "right" }}>
-            <Link to={usuario.perfil === "profissional" ? 
-            "/cadastro/informacoes-profissionais" : "/cadastro/concluido"} 
-            >
-              <Botao variante="primaria">Proximo</Botao>
-            </Link>
+            <Botao type="submit" variante="primaria">
+              Proximo
+            </Botao>
           </div>
         </Col>
       </Row>

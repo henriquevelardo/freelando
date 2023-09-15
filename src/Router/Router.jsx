@@ -10,42 +10,53 @@ import Login from "../paginas/Login/Login";
 import PaginaNaoEncontrada from "../paginas/404/PaginaNaoEncontrada";
 import AreaAtuacao from "../paginas/cadastro/AreaAtuacao";
 import InformacoesProfissionais from "../paginas/cadastro/InformacoesProfissionais";
+import { LoginUsuarioProvider } from "../context/LoginUsuario";
+import HomeCliente from "../paginas/Cliente/HomeCliente";
 
 export const router = createBrowserRouter([
   {
-    path: '',
+    path: "",
     element: <PaginaBase banner={true} />,
     children: [
       {
-        path: '/',
-        element: <Home />
-      }
+        path: "/",
+        element: <Home />,
+      },
     ],
   },
   {
-    path: '',
+    path:"/cliente",
+    element: <HomeCliente />,
+    children:[]
+  },
+  {
+    path: "",
     element: <PaginaBase banner={false} />,
     children: [
       {
-        path: '',
+        path: "",
         element: <LayoutBaseCadastro />,
         children: [
           {
-            path: '*',
-            element: <PaginaNaoEncontrada />
-          }
-        ]
+            path: "*",
+            element: <PaginaNaoEncontrada />,
+          },
+        ],
       },
       {
-        path: '/login',
+        path: "/login",
         element: <LayoutBaseCadastro />,
-        children: [ 
+        children: [
           {
             path: "",
-            element: <Login />
-          }
-        ]
-      }
+            element: (
+              <LoginUsuarioProvider>
+                <Login />
+              </LoginUsuarioProvider>
+            ),
+          },
+        ],
+      },
     ],
   },
   {
@@ -84,5 +95,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  
 ]);
