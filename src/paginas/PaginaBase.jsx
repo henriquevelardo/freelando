@@ -3,13 +3,13 @@ import { Cabecalho } from "../componentes/Cabecalho/Cabecalho";
 import { Rodape } from "../componentes/Rodape/Rodape";
 import { Container } from "react-grid-system";
 import Banner from "../componentes/Banner/Banner";
-import bannerImage from "./Home/assets/Hero.png"
 
-const PaginaBase = ({ banner }) => {
+
+const PaginaBase = ({ banner, url, visualizacao }) => {
   return (
     <>
       <Cabecalho />
-      {banner === true ? <Banner imagem={bannerImage} /> : ""}
+      {banner === true ? <Banner imagem={url} visualizacao={visualizacao} /> : ""}
       <Container>
         <Outlet />
       </Container>

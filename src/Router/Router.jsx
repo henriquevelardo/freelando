@@ -12,22 +12,19 @@ import AreaAtuacao from "../paginas/cadastro/AreaAtuacao";
 import InformacoesProfissionais from "../paginas/cadastro/InformacoesProfissionais";
 import { LoginUsuarioProvider } from "../context/LoginUsuario";
 import HomeCliente from "../paginas/Cliente/HomeCliente";
+import home from "../assets/Hero.png"
+import BannerCliente from "../assets/BannerCliente.png"
 
 export const router = createBrowserRouter([
   {
     path: "",
-    element: <PaginaBase banner={true} />,
+    element: <PaginaBase banner={true} url={home} />,
     children: [
       {
         path: "/",
         element: <Home />,
       },
     ],
-  },
-  {
-    path:"/cliente",
-    element: <HomeCliente />,
-    children:[]
   },
   {
     path: "",
@@ -94,5 +91,16 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "",
+    element: <PaginaBase banner={true} url={BannerCliente}  visualizacao="cliente"/>,
+    children: [
+      {
+        path:"/cliente",
+        element: <HomeCliente />,
+        children:[]
+      },
+    ]
   },
 ]);
