@@ -1,7 +1,7 @@
 import { Col, Row } from "react-grid-system";
 import CabecalhoCadastro from "../cadastro/CabecalhoCadastro";
 import { CampoTexto } from "../../componentes/CampoTexto/CampoTexto";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tipografia } from "../../componentes/Tipografia/Tipografia";
 import { Botao } from "../../componentes/Botao/Botao";
 import login from "../../assets/login.svg";
@@ -11,15 +11,33 @@ import {
   LoginUsuarioProvider,
   useLoginUsuarioContext,
 } from "../../context/LoginUsuario";
+import { useComunicaApiContext } from "../../context/ComunicaAPI";
+import { useEffect, useState } from "react";
+
+
 
 const Login = () => {
+  const { recebeUsuariosCadastrados } = useComunicaApiContext();
+  const [acesso, setAcesso] = useState()
+  const navegar = useNavigate();
+
+
   const { dadosInseridos, setEmailInserido, setSenhaInserida, validaAcesso } = useLoginUsuarioContext();
 
   const autenticacao = (evento) => {
     evento.preventDefault()
 
-    validaAcesso(dadosInseridos)
+    const validaCredenciais = validaAcesso(dadosInseridos)
+  
+    setAcesso(validaCredenciais)
+
+    console.log(acesso) 
+
+    if(acesso) {
+      navegar('/cliente')
+    }
   }
+
 
   return (
     <form style={{ textAlign: "center" }} onSubmit={autenticacao}>
@@ -32,6 +50,8 @@ const Login = () => {
         <Row style={{ textAlign: "left" }}>
           <Col>
             <CampoTexto titulo="Senha" onChange={setSenhaInserida} />
+
+           {acesso === false ? <p>Negado</p> : ""}
 
             <div style={{ textAlign: "right", marginTop: "-8px" }}>
               <Tipografia componente="body" variante="legenda">

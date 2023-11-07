@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 
 const DivEstilizada = styled.div`
   padding: ${(props) => props.theme.espacamentos.l};
-  background: ${(props) => props.theme.cores.secundarias.a};
+  background: ${(props) => props.fundo === "laranja" ? props.theme.cores.secundarias.b : props.theme.cores.secundarias.a};
   border: 1px solid;
-  border-color: ${(props) => props.theme.cores.primarias.a};
+  border-color: ${(props) => props.fundo === "laranja" ? props.theme.cores.primarias.b :props.theme.cores.primarias.a};
   border-radius: ${(props) => props.theme.espacamentos.s};
 `;
 const CardEstilizado = styled.div`
@@ -24,5 +24,5 @@ export const Card = ({ children, variante, fundo }) => {
  if (variante === "card"){
     return <CardEstilizado fundo={fundo}>{children}</CardEstilizado>
  }
-  return <DivEstilizada >{children}</DivEstilizada>;
+  return <DivEstilizada fundo={fundo}>{children}</DivEstilizada>;
 };

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { DadosUsuario } from "./DadosUsuario";
+
 
 const usuarioInicial = {
   perfil: "",

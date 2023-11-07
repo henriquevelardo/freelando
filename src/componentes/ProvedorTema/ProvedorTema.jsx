@@ -12,7 +12,7 @@ const tema = {
     },
     secundarias: {
       a: "#EBEAF9",
-      b: "",
+      b: "#FDF8F8",
       c: "#EBFCF9",
     },
     neutras: {

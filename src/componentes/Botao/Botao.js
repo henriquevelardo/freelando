@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import seta from "../../paginas/cadastro/assets/arrow_back.png";
+import setaPrimaria from "../../paginas/cadastro/assets/setaPrimaria.png"
 
 const BotaoPrimarioEstilizado = styled.button`
     background: ${props => props.theme.cores.primarias.b};
@@ -18,6 +19,11 @@ const BotaoPrimarioEstilizado = styled.button`
     }
     &:focus {
         outline-color: ${props => props.theme.cores.dark.d};
+    }
+
+    &:after {
+        content: ${(props) => props.detalhe === "semSeta" ? "": `url(${setaPrimaria})`};
+        margin-left: 12px
     }
 `
 const BotaoSecundarioEstilizado = styled.button`
@@ -46,10 +52,10 @@ const BotaoSecundarioEstilizado = styled.button`
     }
 `
 
-export const Botao = ({ children, variante, type }) => {
+export const Botao = ({ children, variante, type, detalhe }) => {
 
     if(variante === "primaria"){
-        return <BotaoPrimarioEstilizado type={type} >
+        return <BotaoPrimarioEstilizado type={type} detalhe={detalhe} >
             {children}
         </BotaoPrimarioEstilizado>
     }
